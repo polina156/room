@@ -44,8 +44,6 @@ let visibleCount = 0;
     listEl.append(emptyLi);
   }
 
-
-
   function createTicketElement(ticket, index) {
   const li = document.createElement("li");
   li.className = "ticket";
