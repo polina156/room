@@ -122,3 +122,5 @@ addBtn.addEventListener("click", () => {
 });
 onlyOpenCheckbox.addEventListener("change", renderTickets);
 categoryFilter.addEventListener("change", renderTickets);
+
+renderTickets();     
