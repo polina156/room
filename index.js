@@ -88,4 +88,10 @@ let visibleCount = 0;
   deleteBtn.textContent = "Удалить";
   deleteBtn.addEventListener("click", () => {
     tickets.splice(index, 1);
- 
+    renderTickets();
+  });
+  actions.append(deleteBtn);
+
+  li.append(info, actions);
+  return li;
+}
