@@ -1,14 +1,14 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Заявки корпуса</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="index.js" defer ></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заявки корпуса</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   <div class="container">
+  <div class="container">
     <h1>Заявки корпуса</h1>
 
     <section class="form-section">
@@ -16,10 +16,12 @@
         <label for="titleInput">Что случилось?</label>
         <input type="text" id="titleInput" placeholder="Например, не включается проектор">
       </div>
+
       <div class="field">
         <label for="roomInput">Где?</label>
         <input type="text" id="roomInput" placeholder="Например, 203">
       </div>
+
       <div class="field">
         <label for="categorySelect">Категория</label>
         <select id="categorySelect">
@@ -30,17 +32,29 @@
         </select>
       </div>
 
-    <button id="addbtn">Добавить заявку</button>
-    
-    <p id="message" role="alert"></p>
+      <button id="addBtn">Добавить заявку</button>
+
+      <p id="message" role="alert"></p>
     </section>
+
     <section class="filters">
       <label class="checkbox-label" for="onlyOpenCheckbox">
         <input type="checkbox" id="onlyOpenCheckbox">
         Только открытые
       </label>
 
-  
-    
+      <label for="categoryFilter">Категория:</label>
+      <select id="categoryFilter">
+        <option value="all">Все категории</option>
+        <option value="Оборудование">Оборудование</option>
+        <option value="Аудитория">Аудитория</option>
+        <option value="Другое">Другое</option>
+      </select>
+    </section>
+
+    <ul id="ticketsList"></ul>
+  </div>
+
+  <script src="index.js"></script>
 </body>
 </html>
