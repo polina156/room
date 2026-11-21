@@ -95,3 +95,28 @@ let visibleCount = 0;
   li.append(info, actions);
   return li;
 }
+
+function showMessage(text, type) {              
+  messageEl.textContent = text;
+  messageEl.className = type || "";
+}
+
+addBtn.addEventListener("click", () => {
+  const title = titleInput.value.trim();       
+  const room = roomInput.value.trim();
+  const category = categorySelect.value;
+
+  if (!title || !room || !category) {      
+    showMessage("Заполните все поля и выберите категорию.", "error");
+    return;
+  }
+
+  tickets.push({ title, room, category, done: false }); 
+
+  titleInput.value = "";                   
+  roomInput.value = "";
+  categorySelect.value = "";
+
+  showMessage("Заявка добавлена.", "success");
+  renderTickets();
+});
