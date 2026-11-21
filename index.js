@@ -13,3 +13,17 @@ const messageEl = document.getElementById("message");
 
 const onlyOpenCheckbox = document.getElementById("onlyOpenCheckbox");
 const categoryFilter = document.getElementById("categoryFilter");
+
+function renderTickets() {
+  listEl.innerHTML = "";                        
+  const onlyOpen = onlyOpenCheckbox.checked;     
+  const selectedCategory = categoryFilter.value; 
+
+  if (tickets.length === 0) {
+    const emptyLi = document.createElement("li");
+    emptyLi.className = "empty";
+    emptyLi.textContent = "Заявок пока нет";
+    listEl.append(emptyLi);
+    return;
+  }
+}
