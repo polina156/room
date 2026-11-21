@@ -120,3 +120,5 @@ addBtn.addEventListener("click", () => {
   showMessage("Заявка добавлена.", "success");
   renderTickets();
 });
+onlyOpenCheckbox.addEventListener("change", renderTickets);
+categoryFilter.addEventListener("change", renderTickets);
