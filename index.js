@@ -11,12 +11,14 @@ const categorySelect = document.getElementById("categorySelect");
 const addBtn = document.getElementById("addBtn");
 const messageEl = document.getElementById("message");
 const onlyOpenCheckbox = document.getElementById("onlyOpenCheckbox");
+const onlyDoneCheckbox = document.getElementById("onlyDoneCheckbox");
 const categoryFilter = document.getElementById("categoryFilter");
 
 function renderTickets() {
   listEl.innerHTML = "";
 
   const onlyOpen = onlyOpenCheckbox.checked;
+  const onlyDone = onlyDoneCheckbox.checked;
   const selectedCategory = categoryFilter.value;
 
   if (tickets.length === 0) {
@@ -31,6 +33,7 @@ function renderTickets() {
 
   tickets.forEach((ticket, index) => {
     if (onlyOpen && ticket.done !== false) return;
+    if (onlyDone && ticket.done !== true) return;
     if (selectedCategory !== "all" && ticket.category !== selectedCategory) return;
 
     visibleCount++;
@@ -40,9 +43,15 @@ function renderTickets() {
   if (visibleCount === 0) {
     const emptyLi = document.createElement("li");
     emptyLi.className = "empty";
-    emptyLi.textContent = onlyOpen && selectedCategory === "all"
-      ? "Открытых заявок нет"
-      : "Нет заявок по выбранным фильтрам";
+
+    if (onlyOpen && !onlyDone && selectedCategory === "all") {
+      emptyLi.textContent = "Открытых заявок нет";
+    } else if (onlyDone && !onlyOpen && selectedCategory === "all") {
+      emptyLi.textContent = "Закрытых заявок нет";
+    } else {
+      emptyLi.textContent = "Нет заявок по выбранным фильтрам";
+    }
+
     listEl.append(emptyLi);
   }
 }
@@ -121,13 +130,15 @@ addBtn.addEventListener("click", () => {
 
   titleInput.value = "";
   roomInput.value = "";
-  categorySelect.value = "";
+
+categorySelect.value = "";
 
   showMessage("Заявка добавлена.", "success");
   renderTickets();
 });
 
 onlyOpenCheckbox.addEventListener("change", renderTickets);
+onlyDoneCheckbox.addEventListener("change", renderTickets);
 categoryFilter.addEventListener("change", renderTickets);
 
-renderTickets();
+renderTickets(); 
